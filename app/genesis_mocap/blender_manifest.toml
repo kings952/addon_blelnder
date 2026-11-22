@@ -1,0 +1,11 @@
+schema_version = "1.0.0"
+id = "genesis_mocap"
+version = "0.1.0"
+name = "Genesis Mocap"
+tagline = "Base de interfaz y validación de esqueletos Genesis"
+maintainer = "Genesis Mocap contributors"
+type = "add-on"
+
+blender_version_min = "5.0.0"
+license = ["SPDX:GPL-3.0-or-later"]
+tags = ["Animation", "Rigging"]
