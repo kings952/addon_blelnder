@@ -68,10 +68,10 @@ SEGMENTS = (
     ("lForearmBend", 13, 15, (1, 0, 0)),
     ("rShldrBend", 12, 14, (-1, 0, 0)),
     ("rForearmBend", 14, 16, (-1, 0, 0)),
-    ("lThighBend", 23, 25, (0, 0, -1)),
-    ("lShin", 25, 27, (0, 0, -1)),
-    ("rThighBend", 24, 26, (0, 0, -1)),
-    ("rShin", 26, 28, (0, 0, -1)),
+    ("lThighBend", 23, 25, (0, -1, 0)),
+    ("lShin", 25, 27, (0, -1, 0)),
+    ("rThighBend", 24, 26, (0, -1, 0)),
+    ("rShin", 26, 28, (0, -1, 0)),
     ("chestUpper", 23, 11, (0, 1, 0)),
     ("neckUpper", 11, 0, (0, 1, 0)),
     ("lFoot", 29, 31, (0, 1, 0)),
@@ -229,8 +229,8 @@ def run_self_tests():
     assert q_rotate(identity, (1, 2, 3)) == (1, 2, 3)
     q = q_from_to((1, 0, 0), (0, 1, 0))
     assert norm(v_sub(q_rotate(q, (1, 0, 0)), (0, 1, 0))) < 1e-6
-    qa = q_from_to((0, 0, 1), (0, 0, -1))
-    assert norm(v_sub(q_rotate(qa, (0, 0, 1)), (0, 0, -1))) < 1e-6
+    qa = q_from_to((0, 0, 1), (0, -1, 0))
+    assert norm(v_sub(q_rotate(qa, (0, 0, 1)), (0, -1, 0))) < 1e-6
     original = q_from_axis_angle((0, 0, 1), 1.1)
     swing, twist = swing_twist_decomposition(original, (0, 0, 1))
     rebuilt = q_normalize(q_mul(swing, twist))
