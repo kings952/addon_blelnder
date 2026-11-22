@@ -1,10 +1,6 @@
-# Mocap Genesis - dependencias del entorno externo de desarrollo
-# Python recomendado: 3.10.x (64 bits)
-#
-# Este entorno sirve para desarrollar y probar los motores de vision.
-# Blender proporciona bpy y mathutils en su propio interprete: no instalarlos aqui.
-
+# Python 3.10-3.12 x64. Blender supplies bpy in its own interpreter.
 numpy==1.26.4
 opencv-contrib-python==4.11.0.86
 mediapipe==0.10.21
 onnxruntime==1.20.1
+Pillow>=10.0,<13
