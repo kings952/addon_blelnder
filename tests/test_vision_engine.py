@@ -1,13 +1,17 @@
-import sys, unittest
+import sys
+import unittest
 from pathlib import Path
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "app"))
-from genesis_mocap_tester.vision import PersonTracker, default_model_path
+from genesis_mocap_tester.vision import POSE_CONNECTIONS, PersonTracker, default_model_path
+
 
 class PersonTrackerTests(unittest.TestCase):
     def test_multiple_people_receive_distinct_ids(self):
         result = PersonTracker().update([
             {"bbox": (0, 0, 20, 40), "center": (0.1, 0.2)},
-            {"bbox": (100, 0, 120, 40), "center": (0.8, 0.2)}])
+            {"bbox": (100, 0, 120, 40), "center": (0.8, 0.2)},
+        ])
         self.assertEqual(len({p["track_id"] for p in result}), 2)
 
     def test_small_movement_keeps_track_id(self):
@@ -25,4 +29,11 @@ class PersonTrackerTests(unittest.TestCase):
     def test_default_model_filename(self):
         self.assertEqual(default_model_path().name, "pose_landmarker_lite.task")
 
-if __name__ == "__main__": unittest.main()
+    def test_pose_skeleton_has_connections(self):
+        self.assertGreaterEqual(len(POSE_CONNECTIONS), 30)
+        self.assertIn((11, 13), POSE_CONNECTIONS)
+        self.assertIn((23, 25), POSE_CONNECTIONS)
+
+
+if __name__ == "__main__":
+    unittest.main()
